@@ -1,10 +1,10 @@
 from pymongo import MongoClient
-
+import settings
 
 class MongoFunctions:
     def __init__(self):
         # constructor
-        self.client = MongoClient()
+        self.client = MongoClient(host=settings.MONGO_HOST)
 
     def get_db(self, db_name):
         return self.client[db_name]
@@ -29,3 +29,5 @@ class MongoFunctions:
     def update_one_doc(self, db_name, collection, query, update_json):
         db = self.get_db(db_name)
         return db[collection].update_one(query, {"$set": update_json})
+    
+    # def 
